@@ -17,7 +17,7 @@
 
 #### Команды:
 export YC_TOKEN="***"
-  terraform workspace new stage
+<br>terraform workspace new stage
 <br>terraform workspace new prod
 <br>terraform workspace list
 <br>terraform workspace select stage
