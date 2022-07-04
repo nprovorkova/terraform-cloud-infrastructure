@@ -9,11 +9,11 @@ terraform {
 
   backend "s3" {
     endpoint   = "storage.yandexcloud.net"
-    bucket = "netology-graduation-project-bucket"
-    region = "ru-central1"
-    key    = "bucket-key-path"
-    access_key = "${var.access_key}"
-    secret_key = "${var.secret_key}"
+    bucket     = "netology-graduation-project-bucket"
+    region     = "ru-central1"
+    key        = "data"
+    access_key = "***"
+    secret_key = "***"
 
     skip_region_validation      = true
     skip_credentials_validation = true
@@ -26,12 +26,19 @@ provider "yandex" {
   zone      = local.zones.b.zone_name
 }
 
-data "terraform_remote_state" "network" {
+data "terraform_remote_state" "netology-graduation-project-state" {
   backend = "s3"
+  workspace = terraform.workspace
   config = {
-    bucket = local.bucket_name
-    key    = format( "env:/%s/bucket-key-path", terraform.workspace)
-    region = local.region
+    endpoint   = "storage.yandexcloud.net"
+    bucket     = local.bucket_name
+    key        = format("%s-terraform.tfstate", terraform.workspace)
+    access_key = "***"
+    secret_key = "***"
+
+    region                      = local.region
+    skip_region_validation      = true
+    skip_credentials_validation = true
   }
 }
 
@@ -47,11 +54,6 @@ locals {
       zone_name      = "ru-central1-b"
       public_subnet  = ["192.168.11.0/24"]
       private_subnet = ["192.168.51.0/24"]
-    }
-    c = {
-      zone_name      = "ru-central1-c"
-      public_subnet  = ["192.168.12.0/24"]
-      private_subnet = ["192.168.52.0/24"]
     }
   }
   bucket_name = "netology-graduation-project-bucket"

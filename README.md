@@ -16,12 +16,13 @@
 * Полученная конфигурация инфраструктуры является предварительной, поэтому в ходе дальнейшего выполнения задания возможны изменения.
 
 #### Команды:
-export YC_TOKEN="***"
+Выполняем terraform apply для директории _prepare, затем для директории main
+<br><br>export YC_TOKEN="***"
+<br>terraform init
 <br>terraform workspace new stage
 <br>terraform workspace new prod
 <br>terraform workspace list
 <br>terraform workspace select stage
-<br>terraform init
 <br>terraform validate
 <br>terraform fmt
 <br>terraform plan
