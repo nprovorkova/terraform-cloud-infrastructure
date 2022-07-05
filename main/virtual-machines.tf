@@ -3,8 +3,9 @@ data "yandex_compute_image" "ubuntu-2004" {
 }
 
 resource "yandex_compute_instance" "control-plane-vm" {
-  name     = "control-plane-vm"
-  hostname = "control-plane-vm"
+  name     = format("control-plane-vm-%s", terraform.workspace)
+  hostname = format("control-plane-vm-%s", terraform.workspace)
+  zone = local.zones.a.zone_name
 
   resources {
     cores  = 2
@@ -32,8 +33,9 @@ resource "yandex_compute_instance" "control-plane-vm" {
 }
 
 resource "yandex_compute_instance" "worker1-vm" {
-  name     = "worker1-vm"
-  hostname = "worker1-vm"
+  name     = format("worker1-vm-%s", terraform.workspace)
+  hostname = format("worker1-vm-%s", terraform.workspace)
+  zone = local.zones.b.zone_name
 
   resources {
     cores  = 2
@@ -61,8 +63,9 @@ resource "yandex_compute_instance" "worker1-vm" {
 }
 
 resource "yandex_compute_instance" "worker2-vm" {
-  name     = "worker2-vm"
-  hostname = "worker2-vm"
+  name     = format("worker2-vm-%s", terraform.workspace)
+  hostname = format("worker2-vm-%s", terraform.workspace)
+  zone = local.zones.c.zone_name
 
   resources {
     cores  = 2
