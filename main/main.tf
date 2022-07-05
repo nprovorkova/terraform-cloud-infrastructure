@@ -27,7 +27,7 @@ provider "yandex" {
 }
 
 data "terraform_remote_state" "netology-graduation-project-state" {
-  backend = "s3"
+  backend   = "s3"
   workspace = terraform.workspace
   config = {
     endpoint   = "storage.yandexcloud.net"
@@ -46,15 +46,22 @@ locals {
   region = "ru-central1"
   zones = {
     a = {
-      zone_name      = "ru-central1-a"
-      public_subnet  = ["192.168.10.0/24"]
-      private_subnet = ["192.168.50.0/24"]
+      name = "a"
+      zone_name     = "ru-central1-a"
+      public_subnet = ["192.168.10.0/24"]
     }
     b = {
-      zone_name      = "ru-central1-b"
-      public_subnet  = ["192.168.11.0/24"]
-      private_subnet = ["192.168.51.0/24"]
+      name = "b"
+      zone_name     = "ru-central1-b"
+      public_subnet = ["192.168.11.0/24"]
+    }
+    c = {
+      name = "c"
+      zone_name     = "ru-central1-c"
+      public_subnet = ["192.168.12.0/24"]
     }
   }
   bucket_name = "netology-graduation-project-bucket"
+  nat_image_id   = "fd80mrhj8fl2oe87o4e1"
+  nat_gateway    = "192.168.11.254"
 }
