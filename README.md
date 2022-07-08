@@ -32,3 +32,6 @@
 <br>terraform plan
 <br>terraform apply
 
+<br>Копируем файл, содержащий ip-адреса виртуальных машин в Kubespray
+<br><br>cp ../tf_nodes_ip.yml ../../kubespray-netology-graduation-project/netology-cluster/group_vars/all/tf_nodes_ip.yml
+

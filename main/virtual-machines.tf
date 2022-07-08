@@ -15,12 +15,13 @@ resource "yandex_compute_instance" "control-plane-vm" {
   boot_disk {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu-2004.id
+      size = 50
     }
   }
 
   network_interface {
     subnet_id = yandex_vpc_subnet.public[local.zones.a.name].id
-    nat       = false
+    nat       = true
   }
 
   scheduling_policy {
@@ -45,6 +46,7 @@ resource "yandex_compute_instance" "worker1-vm" {
   boot_disk {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu-2004.id
+      size = 100
     }
   }
 
@@ -75,6 +77,7 @@ resource "yandex_compute_instance" "worker2-vm" {
   boot_disk {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu-2004.id
+      size = 100
     }
   }
 
