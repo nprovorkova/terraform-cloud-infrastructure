@@ -5,7 +5,7 @@ data "yandex_compute_image" "ubuntu-2004" {
 resource "yandex_compute_instance" "control-plane-vm" {
   name     = format("control-plane-vm-%s", terraform.workspace)
   hostname = format("control-plane-vm-%s", terraform.workspace)
-  zone = local.zones.a.zone_name
+  zone     = local.zones.a.zone_name
 
   resources {
     cores  = 2
@@ -15,7 +15,7 @@ resource "yandex_compute_instance" "control-plane-vm" {
   boot_disk {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu-2004.id
-      size = 50
+      size     = 50
     }
   }
 
@@ -36,7 +36,7 @@ resource "yandex_compute_instance" "control-plane-vm" {
 resource "yandex_compute_instance" "worker1-vm" {
   name     = format("worker1-vm-%s", terraform.workspace)
   hostname = format("worker1-vm-%s", terraform.workspace)
-  zone = local.zones.b.zone_name
+  zone     = local.zones.b.zone_name
 
   resources {
     cores  = 2
@@ -46,7 +46,7 @@ resource "yandex_compute_instance" "worker1-vm" {
   boot_disk {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu-2004.id
-      size = 100
+      size     = 100
     }
   }
 
@@ -67,7 +67,7 @@ resource "yandex_compute_instance" "worker1-vm" {
 resource "yandex_compute_instance" "worker2-vm" {
   name     = format("worker2-vm-%s", terraform.workspace)
   hostname = format("worker2-vm-%s", terraform.workspace)
-  zone = local.zones.c.zone_name
+  zone     = local.zones.c.zone_name
 
   resources {
     cores  = 2
@@ -77,7 +77,7 @@ resource "yandex_compute_instance" "worker2-vm" {
   boot_disk {
     initialize_params {
       image_id = data.yandex_compute_image.ubuntu-2004.id
-      size = 100
+      size     = 100
     }
   }
 
