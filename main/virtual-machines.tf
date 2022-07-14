@@ -25,7 +25,7 @@ resource "yandex_compute_instance" "control-plane-vm" {
   }
 
   scheduling_policy {
-    preemptible = true
+    preemptible = false
   }
 
   metadata = {
@@ -56,7 +56,7 @@ resource "yandex_compute_instance" "worker1-vm" {
   }
 
   scheduling_policy {
-    preemptible = true
+    preemptible = false
   }
 
   metadata = {
@@ -87,7 +87,7 @@ resource "yandex_compute_instance" "worker2-vm" {
   }
 
   scheduling_policy {
-    preemptible = true
+    preemptible = false
   }
 
   metadata = {
