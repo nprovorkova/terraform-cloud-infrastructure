@@ -1,6 +1,6 @@
 resource "yandex_lb_target_group" "grafana-balancer-group" {
-  name = format("lb-workers-group-%s", terraform.workspace)
-  depends_on         = [yandex_compute_instance_group.worker-nodes-group]
+  name       = format("lb-workers-group-%s", terraform.workspace)
+  depends_on = [yandex_compute_instance_group.worker-nodes-group]
 
   dynamic "target" {
     for_each = yandex_compute_instance_group.worker-nodes-group.instances
@@ -15,8 +15,8 @@ resource "yandex_lb_network_load_balancer" "grafana-balancer" {
   name = "grafana-balancer"
 
   listener {
-    name = "grafana-listener"
-    port = 80
+    name        = "grafana-listener"
+    port        = 80
     target_port = 3000
     external_address_spec {
       ip_version = "ipv4"

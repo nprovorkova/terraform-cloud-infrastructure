@@ -1,5 +1,5 @@
 resource "yandex_compute_instance_group" "worker-nodes-group" {
-  name     = format("workers-group-%s", terraform.workspace)
+  name               = format("workers-group-%s", terraform.workspace)
   folder_id          = yandex_iam_service_account.netology-cluster-service-account.folder_id
   service_account_id = yandex_iam_service_account.netology-cluster-service-account.id
   depends_on         = [yandex_resourcemanager_folder_iam_member.sa-editor]
@@ -19,7 +19,7 @@ resource "yandex_compute_instance_group" "worker-nodes-group" {
 
     network_interface {
       subnet_ids = [yandex_vpc_subnet.public[local.zones.a.name].id, yandex_vpc_subnet.public[local.zones.b.name].id, yandex_vpc_subnet.public[local.zones.c.name].id]
-      nat = true
+      nat        = true
     }
 
     metadata = {
@@ -39,6 +39,6 @@ resource "yandex_compute_instance_group" "worker-nodes-group" {
 
   deploy_policy {
     max_unavailable = 1
-    max_expansion = 0
+    max_expansion   = 0
   }
 }
