@@ -17,7 +17,7 @@ resource "yandex_lb_network_load_balancer" "grafana-balancer" {
   listener {
     name        = "grafana-listener"
     port        = 80
-    target_port = 3000
+    target_port = 30902
     external_address_spec {
       ip_version = "ipv4"
     }
@@ -29,7 +29,7 @@ resource "yandex_lb_network_load_balancer" "grafana-balancer" {
     healthcheck {
       name = "healthcheck"
       tcp_options {
-        port = 3000
+        port = 30902
       }
     }
   }
