@@ -34,3 +34,27 @@ resource "yandex_lb_network_load_balancer" "grafana-balancer" {
     }
   }
 }
+
+resource "yandex_lb_network_load_balancer" "test-app-balancer" {
+  name = "test-app-balancer"
+
+  listener {
+    name        = "test-app-listener"
+    port        = 80
+    target_port = 30080
+    external_address_spec {
+      ip_version = "ipv4"
+    }
+  }
+
+  attached_target_group {
+    target_group_id = yandex_lb_target_group.grafana-balancer-group.id
+
+    healthcheck {
+      name = "healthcheck"
+      tcp_options {
+        port = 30080
+      }
+    }
+  }
+}
