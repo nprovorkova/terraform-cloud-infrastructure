@@ -14,6 +14,18 @@ output "container_registry_id" {
   value = yandex_container_registry.netology-registry.id
 }
 
+output "netology_registry_service_account_key" {
+  value = {
+    id                 = yandex_iam_service_account_key.netology-registry-service-account-key.id
+    service_account_id = yandex_iam_service_account_key.netology-registry-service-account-key.service_account_id
+    created_at         = yandex_iam_service_account_key.netology-registry-service-account-key.created_at
+    key_algorithm      = yandex_iam_service_account_key.netology-registry-service-account-key.key_algorithm
+    public_key         = yandex_iam_service_account_key.netology-registry-service-account-key.public_key
+    private_key        = yandex_iam_service_account_key.netology-registry-service-account-key.private_key
+  }
+  sensitive = true
+}
+
 resource "local_file" "tf_nodes_ip" {
   content  = <<-DOC
     # Ansible vars_file containing variable values from Terraform.
