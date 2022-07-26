@@ -20,3 +20,25 @@ resource "yandex_iam_service_account_key" "netology-registry-service-account-key
     yandex_iam_service_account.netology-registry-service-account
   ]
 }
+
+resource "yandex_container_registry_iam_binding" "netology-registry-sa-pusher" {
+  registry_id = yandex_container_registry.netology-registry.id
+  role        = "container-registry.images.pusher"
+  members     = ["serviceAccount:${yandex_iam_service_account.netology-registry-service-account.id}"]
+  depends_on = [
+    yandex_iam_service_account.netology-registry-service-account,
+    yandex_container_registry.netology-registry
+  ]
+}
+
+resource "yandex_container_registry_iam_binding" "netology-registry-sa-puller" {
+  registry_id = yandex_container_registry.netology-registry.id
+  role        = "container-registry.images.puller"
+  members = [
+    "serviceAccount:${yandex_iam_service_account.netology-registry-service-account.id}"
+  ]
+  depends_on = [
+    yandex_iam_service_account.netology-registry-service-account,
+    yandex_container_registry.netology-registry
+  ]
+}
