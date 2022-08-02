@@ -27,6 +27,7 @@ resource "yandex_container_registry_iam_binding" "netology-registry-sa-pusher" {
   members     = ["serviceAccount:${yandex_iam_service_account.netology-registry-service-account.id}"]
   depends_on = [
     yandex_iam_service_account.netology-registry-service-account,
+    yandex_iam_service_account_key.netology-registry-service-account-key,
     yandex_container_registry.netology-registry
   ]
 }
@@ -39,6 +40,7 @@ resource "yandex_container_registry_iam_binding" "netology-registry-sa-puller" {
   ]
   depends_on = [
     yandex_iam_service_account.netology-registry-service-account,
+    yandex_iam_service_account_key.netology-registry-service-account-key,
     yandex_container_registry.netology-registry
   ]
 }

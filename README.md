@@ -24,7 +24,9 @@
 * В качестве регистра может быть DockerHub или Yandex Container Registry, созданный также с помощью terraform.
 
 #### Команды:
-Выполняем terraform apply для директории _prepare, затем для директории main
+Выполняем terraform apply для директории _prepare, 
+<br>копируем access_key и secret_key (terraform output secret_key) в main.tf
+<br>затем terraform apply для директории main
 <br><br>export YC_TOKEN="***"
 <br>terraform init
 <br>terraform workspace new stage
