@@ -58,5 +58,8 @@ resource "yandex_lb_network_load_balancer" "test-app-balancer" {
       }
     }
   }
-  depends_on = [yandex_lb_target_group.grafana-balancer-group]
+  depends_on = [
+    yandex_lb_target_group.grafana-balancer-group,
+    yandex_lb_network_load_balancer.grafana-balancer
+  ]
 }
