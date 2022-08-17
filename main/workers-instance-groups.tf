@@ -19,7 +19,7 @@ resource "yandex_compute_instance_group" "worker-nodes-group" {
 
     network_interface {
       subnet_ids = [yandex_vpc_subnet.public[local.zones.a.name].id, yandex_vpc_subnet.public[local.zones.b.name].id, yandex_vpc_subnet.public[local.zones.c.name].id]
-      nat        = true
+      nat        = false
     }
 
     metadata = {

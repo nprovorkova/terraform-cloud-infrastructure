@@ -3,5 +3,5 @@ resource "yandex_storage_bucket" "netology-graduation-project-bucket" {
   secret_key = yandex_iam_service_account_static_access_key.sa-static-key.secret_key
   depends_on = [yandex_iam_service_account_static_access_key.sa-static-key]
   bucket     = "netology-graduation-project-bucket"
-  acl        = "public-read"
+  acl        = "bucket-owner-full-control"
 }

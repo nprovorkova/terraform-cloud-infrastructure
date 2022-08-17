@@ -1,5 +1,5 @@
 resource "yandex_iam_service_account" "netology-cluster-service-account" {
-  name = "netology-cluster-service-account"
+  name = format("netology-cluster-service-account-%s", terraform.workspace)
 }
 
 resource "yandex_resourcemanager_folder_iam_member" "sa-editor" {

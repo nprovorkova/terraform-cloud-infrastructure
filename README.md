@@ -42,4 +42,5 @@
 <br><br>cp ../tf_nodes_ip.yml ../../kubespray-netology-graduation-project/netology-cluster/group_vars/all/tf_nodes_ip.yml
 <br>terraform output -json netology_registry_service_account_key |docker login --username json_key --password-stdin cr.yandex
 <br>cat ~/.docker/config.json
+<br><br>Вы создаёте по отдельному балансировщику на каждый сервис (grafana и тестовое приложение), но можно сэкономить ресурсы, создать только один балансировщик и использовать в kubernetes Ingress на основе nginx. Так чаще всего и строятся реальные системы.
 
